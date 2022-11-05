@@ -128,3 +128,14 @@ ex: function _multiply(uint a, uint b) private pure returns (uint) {
 
 C11 - Keccak256 and Typecasting
 ez
+
+
+
+C12 - kuch nahi tha
+
+
+
+C13 - Events'
+event setPerson()
+
+to use - emit setPerson()
