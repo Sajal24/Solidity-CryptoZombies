@@ -27,11 +27,13 @@ here, uint is actually an alias for uint265. a 256-bit unsigned Integers
 
 
 C04 - Math Operations
+
 basic - same as of other programming languages
 
 
 
 C05 - Structs
+
 basically a more complex data type - like a class
 
 struct Zombie {
@@ -42,13 +44,14 @@ struct Zombie {
 
 
 C06 - Arrays
+
 2 types of arrays in solidity - fixed and dynamic
 Fixed - uint[2] fixedArray;
       - string[5] stringArray;
 Dynamic - uint[] dynamicArray;
 
 we can also create an array of structs:
-Zombie[] zombies;   (from C05)
+Zombie[] public zombies;   (from C05)
 
 here, see that a dynamic array of structs will be similar to that of a database as you will be storing the state varibles, which get stored on the contract storage/Ethereum blockchain
 
@@ -60,4 +63,68 @@ other contracts will be able to read from (not write) - hence good for storing p
 
 C07 - Function Declaration
 
+at first - a solidity function can receive arguements in 2 ways:
+1. by value - here, the solidity compiler makes a copy of the original variable and passes it to the function, so that you can alter the value of the parameter, but the original variable won't get effected.
+2. by reference - it means you receive the original variable as it is by reference and any change in that will change the original variable.
 
+* its a convention to start the function parameter variable name with a underscore (_), differentiating it with a global variable.
+
+ex: function eatHamburgers(string memory _name, uint _amount) public {
+
+}
+
+
+
+C08 - Working with Structs and Arrays
+
+create Persons to the Person truct (basically adding objects from a class)
+//Person class
+struct Person {
+    uint age;
+    string name;
+}
+
+//making a public dynamic array of struct Person named people
+Person[] public people;  
+
+//create a new person (an object) and adding it to the array
+Person satoshi = Person(72, "Satoshi")
+people.push(satoshi)
+
+//can also be done in one line
+people.push(Person(72, "Satoshi"))
+
+
+
+C09 - Private/Public Functions
+
+functions by default are public here, that is anyone or any other contract can call and execute its code
+NOT desirable as then it'll be vulnerable to attacks, therefore functions should be kept private by default, and make public whenever and whichever function you want to expose to the world
+
+* convention to start the name of our private functions with '_' underscore
+
+
+
+C10 - More on functions
+
+* Return Values - ex:
+string greeting = "whazzzup";
+
+function sayHello() public returns (string memory) {
+    return greeting;
+}
+
+* Function Modifiers:
+2 modifiers - view and pure
+View - function not changing any states, i.e, doesn't change any values or write anything - only viewing the data
+ex: function sayHello() public view returns (string memory) 
+
+Pure - not even accessing the state of the app, doesn't even read
+ex: function _multiply(uint a, uint b) private pure returns (uint) {
+    return a*b;
+}
+
+
+
+C11 - Keccak256 and Typecasting
+ez
