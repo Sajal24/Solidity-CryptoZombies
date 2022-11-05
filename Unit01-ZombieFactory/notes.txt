@@ -1,0 +1,61 @@
+C01 - Building a zombie factory
+
+aim:
+1. DB of all the zombies created
+2. a function for creating new zombies
+3. random and unique appearance for each zombie
+
+Will be building a zombie DNA also - a 16 digit number which will define the appearance of a zombie
+first 2 digit - zombie's head, second 2 digit - eyes, etc.
+
+
+
+C02 - Contracts
+
+Contract is the fundamental building block of Ethereum apps - starting part of all projects
+Pragma - its a declaration of the version of Solidity compiler, this code should be using; to prevent breaking of your code if any newer versions of Solidity compiler is introduced in the future
+
+
+
+C03 - State Variables and Integers
+
+State Variables - variable that are permanently stored on the Ethereum blockchain/contract storage
+
+Uint - Unsigned Integers
+here, uint is actually an alias for uint265. a 256-bit unsigned Integers
+
+
+
+C04 - Math Operations
+basic - same as of other programming languages
+
+
+
+C05 - Structs
+basically a more complex data type - like a class
+
+struct Zombie {
+    string name;
+    uint dna;
+}
+
+
+
+C06 - Arrays
+2 types of arrays in solidity - fixed and dynamic
+Fixed - uint[2] fixedArray;
+      - string[5] stringArray;
+Dynamic - uint[] dynamicArray;
+
+we can also create an array of structs:
+Zombie[] zombies;   (from C05)
+
+here, see that a dynamic array of structs will be similar to that of a database as you will be storing the state varibles, which get stored on the contract storage/Ethereum blockchain
+
+* Public Arrays:
+solidity will already create a getter method for such arrays
+other contracts will be able to read from (not write) - hence good for storing public data in the contract
+
+
+
+C07 - 
