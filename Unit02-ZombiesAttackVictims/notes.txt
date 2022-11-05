@@ -1,0 +1,6 @@
+C01 - Overview
+new way to generate a zombie is to make it feed and inject virus to other humans and new zombie's DNA will be generated based on the attacking zombie's DNA and the human's (host's) DNA
+
+
+
+C02 - Mappings and Address
