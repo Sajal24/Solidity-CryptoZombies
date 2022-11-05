@@ -58,4 +58,6 @@ other contracts will be able to read from (not write) - hence good for storing p
 
 
 
-C07 - 
+C07 - Function Declaration
+
+
