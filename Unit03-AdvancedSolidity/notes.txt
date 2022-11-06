@@ -1,1 +1,73 @@
-C01 - Overview
+Contract ownership, gas costs, code optimization, and security
+
+C01 - Immutability of Contracts
+Once you deploy a contract on Ethereum, it is immutable - can't be modified or updated.
+so if you think that there's a thing, a function, a value that can be changed in the future, instead of hard coding it to the contract - make a function that would help us update the value.
+
+
+
+C02 - Ownable Contracts
+from the above thing, making a function external will be a huge security hole as anyone would be able to change things like contract address of anything.
+so - make the contracts ownable - having a owner who has special privileges.
+
+*OpenZeppelin's (a solidity library of secure and community-vetted smart contracts) Ownable Contract - A MUST READ 
+the Ownable contract basically does the following:
+
+- When a contract is created, its constructor sets the owner to msg.sender (the person who deployed it)
+
+- It adds an onlyOwner modifier, which can restrict access to certain functions to only the owner
+
+- It allows you to transfer the contract to a new owner
+
+
+
+C03 - onlyOwner function modifier
+*Function Modifiers - looks just like a funtion, used the keyword modifier instead of the keyword function - can't be directly called like a function - rather we attach the modifier's name at the end of a functino defination.
+
+It will solve that security hole - only owner will be able to access that function, see how:
+
+in the ownable contract:
+    modifier onlyOwner() {
+        require(isOwner());
+        _;
+    }
+
+    function renounceOwnership() public onlyOwner {
+        emit OwnershipTransferred(_owner, address(0));
+        _owner = address(0);
+  }
+
+When you call renounceOwnership, the code inside onlyOwner executes first. Then when it hits the [ _; ] statement in onlyOwner, it goes back and executes the code inside renounceOwnership.
+
+one of the most common use-cases is to add a quick require check before a function executes.
+
+here, adding this modifier to a function makes it so only the owner of the contract (you, if you deployed it) can call that function.
+
+
+
+C04 - Gas
+to execute functions on our dApp - users need to pay a fee called gas - that is bought with ether 
+
+how much gas is required to execute a function depends on how complex that function's logic is. Each individual operation has a gas cost based roughly on how much computing resources will be required to perform that operation (ex: writing to storage is much more expensive than adding two integers). 
+
+- hence code optimization is very necessary otherwise users would have to pay a lot of money to execute our functions
+
+- practically all uint8, uint32, uint256 takes up same gas as solidity reserves 256 bits of storage regardless of the uint size
+BUT in a struct - different uint size can save gas as solidity pack these variables together to take up less storage.
+
+- also cluster identical data types together (i.e. put them next to each other in the struct) so that solidity can minimize the required storage space
+ex: a struct with fields uint c; uint32 a; uint32 b; will cost less gas than a struct with fields uint32 a; uint c; uint32 b; because the uint32 fields are clustered together.
+
+
+
+C05 - Time Units
+variable 'now' will return the current unix timestamp of the latest block (the number of seconds that have passed since January 1st 1970).
+
+//year2038 problem: unix time is traditionally stored in a 32-bit number. This will lead to the "Year 2038" problem, when 32-bit unix timestamps will overflow and break a lot of legacy systems. So if we wanted our DApp to keep running 20 years from now, we could use a 64-bit number instead — but our users would have to spend more gas to use our DApp in the meantime. Design decisions!
+
+
+
+C06 - Zombie Cooldowns - passing structs as arguements
+ex: function _doStuff(Zombie storage _zombie) internal {
+        // do stuff with _zombie
+     }
