@@ -23,7 +23,6 @@ a type of global variable available to all functions - refers to the address of 
 
 
 C04 - Require
-basically the if statement of solidity
 will throw an error and stop executing if some condition is not true
 ex: function sayHiToVitalik(string memory _name) public returns (string memory) {
     require((keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")));
@@ -31,4 +30,86 @@ ex: function sayHiToVitalik(string memory _name) public returns (string memory) 
     //here using keccak256 as solidity doesn't have native string comparison, so we compare the hashes generated with keccak256 for the strings, if they're equal
 }
 
+
+
+C05 - Inheritance
+ex:  contract Child is Parent   OR   contract ZombieFeeding is ZombieFactory
+
+here `is` signifies inherits - contract child inherits from contract parent 
+that is when you compile and deploy Child, you have access to both of the contract's public functions
+
+
+
+C06 - Import
+same as import statements 
+
+
+
+C07 - Storage vs Memory   -- I DO HAVE PROBLEM HERE
+there are 2 locations you can store variables - in storage and in memory
+think of it like hard disk vs RAM - Storage refers to global variables or variables made outside of a function - stored permanently on the blockchain.
+while Memory variable are temporary - made inside a function and are erased when the function call ends.
+
+
+
+C08 - Zombie DNA
+now to calculate new zombie's DNA - take average of zombieDna and targetDna
+basic re
+
+
+
+C09 - Function Visibility
+in addition to public and private - 2 more Visibility types for functions - internal and external
+Internal - same as private but the contracts inheriting from this contract can also use the function with Internal
+External - same as public BUT can't be called by other functions in the same contract and can only be called from outside the contract.
+
+
+
+C10 - Interacting with other contracts
+First, define an interface for the other contract that are to be accessed
+ex:  contract NumberInterface {
+    function getNum(address _myAddress) public view returns (uint);
+}
+
+here - see this contract skeleton with function declaration ending with a semi-colon instead of a function body [ { } ] - the compiler knows it's an interface.
+
+
+
+C11 - Using an interface
+didn't understand
+basically creating and using an interface means (from C10)
+  address NumberInterfaceAddress = 0xasfasdgadfg...
+  NumberInterface numberContract = NumberInterface(NumberInterfaceAddress);
+
+
+
+C12 - Multiple return values
+function multipleReturns() internal returns(uint a, uint b, uint c) {
+  return (1, 2, 3);
+}
+
+function processMultipleReturns() external {
+  uint a;
+  uint b;
+  uint c;
+  // This is how you do multiple assignment:
+  (a, b, c) = multipleReturns();
+}
+
+// Or if we only cared about one of the values:
+function getLastReturnValue() external {
+  uint c;
+  // We can just leave the other fields blank:
+  (,,c) = multipleReturns();
+}
+
+
+
+C13 - Bonus - If operator in solidity
+same as normal if statements
+use keccak256 as usual
+
+
+
+C14 - Done!
 
