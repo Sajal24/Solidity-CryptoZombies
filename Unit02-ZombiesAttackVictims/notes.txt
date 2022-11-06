@@ -4,3 +4,31 @@ new way to generate a zombie is to make it feed and inject virus to other humans
 
 
 C02 - Mappings and Address
+making our game multiplayer by giving the zombies in our db an owner
+
+*Addresses
+Ethereum blockchain is made up of accounts, having addresses belonging to a particular person (owner) or a smart contract.
+
+*Mappings
+a more complex data-type for key-value pair storing and looking up data.
+ex: mapping (address => uint) public accountBalance; 
+mapping can be accessed and used like accessing elements in an array
+ex: accountBalance[msg.sender] = _amount;
+
+
+
+C03 - Msg.sender
+a type of global variable available to all functions - refers to the address of the person (or smart contract) who called the current function
+
+
+
+C04 - Require
+basically the if statement of solidity
+will throw an error and stop executing if some condition is not true
+ex: function sayHiToVitalik(string memory _name) public returns (string memory) {
+    require((keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")));
+    return "Hi";
+    //here using keccak256 as solidity doesn't have native string comparison, so we compare the hashes generated with keccak256 for the strings, if they're equal
+}
+
+
