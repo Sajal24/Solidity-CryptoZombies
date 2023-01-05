@@ -137,5 +137,6 @@ C12 - kuch nahi tha
 
 C13 - Events'
 event setPerson()
+//^/tyhh
 
 to use - emit setPerson()
