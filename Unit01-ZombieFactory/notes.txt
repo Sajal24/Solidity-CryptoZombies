@@ -13,7 +13,7 @@ first 2 digit - zombie's head, second 2 digit - eyes, etc.
 C02 - Contracts
 
 Contract is the fundamental building block of Ethereum apps - starting part of all projects
-Pragma - its a declaration of the version of Solidity compiler, this code should be using; to prevent breaking of your code if any newer versions of Solidity compiler is introduced in the future
+Pragma - its a declaration of the version of Solidity compiler the below written code should be using; to prevent breaking of your code if any newer versions of Solidity compiler is introduced in the future
 
 
 
@@ -77,12 +77,12 @@ ex: function eatHamburgers(string memory _name, uint _amount) public {
 
 C08 - Working with Structs and Arrays
 
-create Persons to the Person truct (basically adding objects from a class)
-//Person class
-struct Person {
-    uint age;
-    string name;
-}
+create Persons to the Person struct (basically adding objects from a class)
+        //Person class
+        struct Person {
+            uint age;
+            string name;
+        }
 
 //making a public dynamic array of struct Person named people
 Person[] public people;  

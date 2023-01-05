@@ -22,7 +22,7 @@ the Ownable contract basically does the following:
 
 
 C03 - onlyOwner function modifier
-*Function Modifiers - looks just like a funtion, used the keyword modifier instead of the keyword function - can't be directly called like a function - rather we attach the modifier's name at the end of a functino defination.
+*Function Modifiers - looks just like a function, used the keyword modifier instead of the keyword function - can't be directly called like a function - rather we attach the modifier's name at the end of a function defination.
 
 It will solve that security hole - only owner will be able to access that function, see how:
 
